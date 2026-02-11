@@ -1,0 +1,53 @@
+name: Autograding Tests
+on:
+  - push
+  - repository_dispatch
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: HTML5 DOCTYPE
+        id: doctype
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: HTML5 DOCTYPE
+          command: grep -q "<!DOCTYPE html>" index.html
+          timeout: 10
+          max-score: 30
+
+      - name: Semantic Elements
+        id: semantic
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Semantic Elements
+          command: grep -q "<header" index.html && grep -q "<nav" index.html && grep -q "<main" index.html
+          timeout: 10
+          max-score: 40
+
+      - name: Footer exists
+        id: footer
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Footer exists
+          command: grep -q "<footer" index.html
+          timeout: 10
+          max-score: 30
+
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          DOCTYPE_RESULTS: "${{steps.doctype.outputs.result}}"
+          SEMANTIC_RESULTS: "${{steps.semantic.outputs.result}}"
+          FOOTER_RESULTS: "${{steps.footer.outputs.result}}"
+        with:
+          runners: doctype,semantic,footer
