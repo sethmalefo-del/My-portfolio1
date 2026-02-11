@@ -3,11 +3,16 @@
     {
       "name": "HTML5 DOCTYPE",
       "run": "grep -q \"<!DOCTYPE html>\" index.html",
-      "points": 20
+      "points": 30
     },
     {
       "name": "Semantic Elements",
       "run": "grep -q \"<header\" index.html && grep -q \"<nav\" index.html && grep -q \"<main\" index.html",
+      "points": 40
+    },
+    {
+      "name": "Footer exists",
+      "run": "grep -q \"<footer\" index.html",
       "points": 30
     }
   ]
