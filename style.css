@@ -1,14 +1,25 @@
 ﻿/* My portfolio */
+:root {
+    --bg:#f4f7fb;
+    --surface:#ffffff;
+    --text: #1f2a37;
+    --accent: #1d6fdc;
+    --accent-dark: #1658ad;
+}
+* {
+    box-sizing: border-box;
+}
 body {
-    font-family: Arial, sans-serif;
-    background: #bdf0f0;
-    color: #1f2937;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    color: var(--text);
+    background:linear-gradient(160deg, #eef4ff 0%, #f9fbfe 100%);
 }
 section {
     padding: 60px 0;
 }
 .navbar .nav-link {
-  color: #1f2937;
+  color: var(--text);
 }
 
 .navbar .nav-link:hover {
@@ -17,9 +28,11 @@ section {
 
 #projects article:hover {
   transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .btn-primary:hover {
     background-color: #0b53d7;
+    border-color: #0b53d7;
 }
 a:hover {
     text-decoration: underline;
