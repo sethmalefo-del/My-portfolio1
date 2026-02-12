@@ -1,0 +1,26 @@
+﻿/* My portfolio */
+body {
+    font-family: Arial, sans-serif;
+    background: #bdf0f0;
+    color: #1f2937;
+}
+section {
+    padding: 60px 0;
+}
+.navbar .nav-link {
+  color: #1f2937;
+}
+
+.navbar .nav-link:hover {
+  color: #0a66f0;
+}
+
+#projects article:hover {
+  transform: translateY(-4px);
+}
+.btn-primary:hover {
+    background-color: #0b53d7;
+}
+a:hover {
+    text-decoration: underline;
+}
