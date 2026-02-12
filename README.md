@@ -4,7 +4,7 @@
 
 Add your deployed portfolio URL here:
 
-- Live site: `PASTE_YOUR_DEPLOYED_LINK_HERE`
+- Live site: `http://127.0.0.1:5502/index.html`
 
 Note: The project can only be marked "styled portfolio live" after this URL is added and accessible.
 
