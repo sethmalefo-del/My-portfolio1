@@ -1,74 +1,77 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/hs1qCOEB)
+﻿# Week 2 - HTML + CSS Portfolio
 
-# Week 1 – HTML Portfolio
+## Live Demo
 
-## Objective
+Add your deployed portfolio URL here:
 
-Build a personal portfolio using **semantic HTML5**.
+- Live site: `PASTE_YOUR_DEPLOYED_LINK_HERE`
+
+Note: The project can only be marked "styled portfolio live" after this URL is added and accessible.
 
 ## Project Overview
 
-This is a professional portfolio website for Setlhomara Malefo, an aspiring software developer at Techbridle Foundation. The portfolio showcases skills, projects, and contact information using proper HTML5 semantic structure.
+This project is a personal portfolio for Setlhomara Malefo.  
+It uses semantic HTML5, external CSS, and Bootstrap 5 via CDN to create a responsive multi-section layout.
 
-## Features Implemented
+## Design Layout Choices
 
-✅ Proper HTML5 document structure with DOCTYPE and meta tags  
-✅ Semantic elements: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`  
-✅ Responsive meta viewport tag  
-✅ Navigation menu with anchor links  
-✅ About section with detailed biography (3+ paragraphs)  
-✅ Skills section with organized list  
-✅ Projects section with article elements and descriptions  
-✅ Contact section with name, phone, and email  
-✅ 3+ images with descriptive alt attributes  
-✅ Semantic HTML validation  
+1. Structure
+- Semantic tags are used for clarity and accessibility: `header`, `nav`, `main`, `section`, `article`, and `footer`.
+- Content is split into four sections: About, Skills, Projects, and Contact.
 
-## File Structure
+2. Navigation
+- A Bootstrap responsive navbar (`navbar`, `navbar-expand-lg`) is used for consistent navigation across screen sizes.
+- Nav links use anchor targets (`#about`, `#skills`, `#projects`, `#contact`) for fast section jumps.
 
-```
-portfolio.html          - Main portfolio website file
-seth.jpg               - Professional headshot image
-coding-image.jpg       - Development environment image
-icon-image.jpg         - Projects icon image
-```
+3. Grid System
+- Bootstrap containers and grid are used throughout:
+- `container` for centered content width.
+- `row` and `col-*` for responsive columns in About, Skills, Projects, and Contact sections.
 
-## Contact Information
+4. Visual Styling
+- Custom styles are defined in `style.css` (external stylesheet).
+- The design uses:
+- A readable sans-serif font stack.
+- Soft background and high-contrast text colors.
+- Consistent section spacing using padding.
+- Hover effects on links, navbar items, buttons, and project cards.
 
-- **Name:** Setlhomara Malefo
-- **Email:** <setlhomara.malefo@techbridlefoundation.org>
-- **Phone:** 067-655-4149
-- **Organization:** Techbridle Foundation
+5. Form Design
+- Contact form uses Bootstrap form components:
+- `form-label`, `form-control`, spacing utilities, and `btn btn-primary`.
+- Labels are associated with inputs using `for` + matching `id` for accessibility.
 
 ## Technologies Used
 
 - HTML5
-- Semantic Web Standards
+- CSS3
+- Bootstrap 5 (CDN)
 
-## How to Use
+## File Structure
 
-1. Open `portfolio.html` in a web browser
-2. Use the navigation menu to jump to different sections
-3. Click email and phone links for direct contact
+```text
+index.html
+style.css
+README.md
+seth.jpg
+coding-image.jpg
+icon-image.jpg
+real-ai-image.png
+```
 
-## Requirements Met
+## Before/After Screenshots
 
-- ✅ Use semantic elements (`header`, `nav`, `main`, `section`, `footer`)
-- ✅ About section with multiple paragraphs
-- ✅ Projects section with article elements
-- ✅ Skills section with organized lists
-- ✅ Contact section with contact details
-- ✅ Proper heading hierarchy
-- ✅ 3+ images with alt attributes
-- ✅ Valid HTML5 structure
+Add your screenshots in the repository and link them here:
 
-## Validation
+- Before: `PASTE_BEFORE_SCREENSHOT_PATH_OR_LINK`
+- After: `PASTE_AFTER_SCREENSHOT_PATH_OR_LINK`
 
-The HTML code follows W3C standards for semantic HTML5 and passes validation.
+## How to Run Locally
+
+1. Open the project folder.
+2. Open `index.html` in a browser.
+3. Ensure internet is available so Bootstrap CDN loads.
 
 ## Author
 
-Setlhomara Malefo - Techbridle Foundation Trainee
-
-## License
-
-© 2024 Setlhomara Malefo. All rights reserved.
+Setlhomara Malefo
