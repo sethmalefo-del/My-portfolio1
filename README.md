@@ -74,4 +74,4 @@ Add your screenshots in the repository and link them here:
 
 ## Author
 
-Setlhomara Malefo
+Setlhomara Malefo. All rights reserved.
