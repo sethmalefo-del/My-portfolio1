@@ -1,0 +1,221 @@
+name: Autograding Tests
+'on':
+- push
+- workflow_dispatch
+- pull_request
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ---------- BASIC HTML STRUCTURE (20) ----------
+      - name: index.html exists
+        id: index-exists
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: index.html exists
+          setup-command: ''
+          command: test -f index.html
+          timeout: 10
+          max-score: 5
+
+      - name: HTML5 DOCTYPE present
+        id: doctype
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: HTML5 DOCTYPE present
+          setup-command: ''
+          command: grep -q "<!DOCTYPE html>" index.html
+          timeout: 10
+          max-score: 5
+
+      - name: Title tag present
+        id: title
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Title tag present
+          setup-command: ''
+          command: grep -qi "<title>.*</title>" index.html
+          timeout: 10
+          max-score: 5
+
+      - name: Viewport meta present
+        id: viewport
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Viewport meta present
+          setup-command: ''
+          command: grep -qi 'name="viewport"' index.html
+          timeout: 10
+          max-score: 5
+
+      # ---------- SEMANTIC ELEMENTS (30) ----------
+      - name: header present
+        id: header
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: header present
+          setup-command: ''
+          command: grep -qi "<header" index.html
+          timeout: 10
+          max-score: 5
+
+      - name: nav present
+        id: nav
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: nav present
+          setup-command: ''
+          command: grep -qi "<nav" index.html
+          timeout: 10
+          max-score: 5
+
+      - name: main present
+        id: main
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: main present
+          setup-command: ''
+          command: grep -qi "<main" index.html
+          timeout: 10
+          max-score: 5
+
+      - name: section present
+        id: section
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: section present
+          setup-command: ''
+          command: grep -qi "<section" index.html
+          timeout: 10
+          max-score: 5
+
+      - name: article present
+        id: article
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: article present
+          setup-command: ''
+          command: grep -qi "<article" index.html
+          timeout: 10
+          max-score: 5
+
+      - name: footer present
+        id: footer
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: footer present
+          setup-command: ''
+          command: grep -qi "<footer" index.html
+          timeout: 10
+          max-score: 5
+
+      # ---------- REQUIRED CONTENT (25) ----------
+      - name: About section (heading/id/class)
+        id: about
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: About section (heading/id/class)
+          setup-command: ''
+          command: grep -Eqi 'about|id="about"|class="[^"]*about' index.html
+          timeout: 10
+          max-score: 10
+
+      - name: Projects/Skills list exists (ul/ol)
+        id: list
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Projects/Skills list exists (ul/ol)
+          setup-command: ''
+          command: grep -Eqi "<ul|<ol" index.html
+          timeout: 10
+          max-score: 10
+
+      - name: Contact section exists (contact/form/mailto)
+        id: contact
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Contact section exists (contact/form/mailto)
+          setup-command: ''
+          command: grep -Eqi 'contact|<form|mailto:' index.html
+          timeout: 10
+          max-score: 5
+
+      # ---------- IMAGES + ALT (15) ----------
+      - name: Has at least 3 images
+        id: imgcount
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Has at least 3 images
+          setup-command: ''
+          command: test "$(grep -Eoi "<img" index.html | wc -l)" -ge 3
+          timeout: 10
+          max-score: 10
+
+      - name: All images have alt attributes
+        id: alt
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: All images have alt attributes
+          setup-command: ''
+          command: |
+            imgs="$(grep -Eoi "<img[^>]*>" index.html | wc -l)"
+            with_alt="$(grep -Eoi "<img[^>]*alt=" index.html | wc -l)"
+            test "$imgs" -gt 0 && test "$imgs" -eq "$with_alt"
+          timeout: 10
+          max-score: 5
+
+      # ---------- DELIVERABLES (10) ----------
+      - name: README exists
+        id: readme
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: README exists
+          setup-command: ''
+          command: test -f README.md
+          timeout: 10
+          max-score: 5
+
+      - name: W3C screenshot exists (any reasonable name)
+        id: w3cshot
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: W3C screenshot exists (any reasonable name)
+          setup-command: ''
+          command: |
+            find . -maxdepth 3 -type f \( -iname "*w3c*.png" -o -iname "*w3c*.jpg" -o -iname "*validator*.png" -o -iname "*validator*.jpg" -o -iname "*validation*.png" -o -iname "*validation*.jpg" \) | grep -q .
+          timeout: 10
+          max-score: 5
+
+      # ---------- REPORTER ----------
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          INDEX-EXISTS_RESULTS: "${{steps.index-exists.outputs.result}}"
+          DOCTYPE_RESULTS: "${{steps.doctype.outputs.result}}"
+          TITLE_RESULTS: "${{steps.title.outputs.result}}"
+          VIEWPORT_RESULTS: "${{steps.viewport.outputs.result}}"
+          HEADER_RESULTS: "${{steps.header.outputs.result}}"
+          NAV_RESULTS: "${{steps.nav.outputs.result}}"
+          MAIN_RESULTS: "${{steps.main.outputs.result}}"
+          SECTION_RESULTS: "${{steps.section.outputs.result}}"
+          ARTICLE_RESULTS: "${{steps.article.outputs.result}}"
+          FOOTER_RESULTS: "${{steps.footer.outputs.result}}"
+          ABOUT_RESULTS: "${{steps.about.outputs.result}}"
+          LIST_RESULTS: "${{steps.list.outputs.result}}"
+          CONTACT_RESULTS: "${{steps.contact.outputs.result}}"
+          IMGCOUNT_RESULTS: "${{steps.imgcount.outputs.result}}"
+          ALT_RESULTS: "${{steps.alt.outputs.result}}"
+          README_RESULTS: "${{steps.readme.outputs.result}}"
+          W3CSHOT_RESULTS: "${{steps.w3cshot.outputs.result}}"
+        with:
+          runners: index-exists,doctype,title,viewport,header,nav,main,section,article,footer,about,list,contact,imgcount,alt,readme,w3cshot

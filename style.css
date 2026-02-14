@@ -79,10 +79,9 @@ project-card:hover{
     transform: translateY(-5px);
     box-shadow:0 14px 24px rgba(0,0,0,0.12);
 }
-.project-card card-title{
+.project-card .card-title{
     color:#12335e;
 }
-    }
 #projects article:hover {
   transform: translateY(-4px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -93,4 +92,5 @@ project-card:hover{
 }
 a:hover {
     text-decoration: underline;
+}
 }
